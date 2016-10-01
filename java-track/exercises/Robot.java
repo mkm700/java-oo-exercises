@@ -2,50 +2,38 @@
 public class Robot {
 	//fields
 	private String name;
-	private int[][] position;
+	//private int[][] position;
+	private int posX;
+	private int posY;
 	private int speed;
-	private int direction; //0=north; 90=east; 180=south; 270=east
+	private int direction; //1=north; 2=east; 3=south; 4=east
 		
 	//behaviors
 	
-	//create a robot (constructors)
-	public Robot(String name) {
-		this.name = name;
-		this.position = new int[2][1];
-		this.position[0][0] = 0;
-		this.position[1][0] = 0;
-		this.speed = 10;
-		this.direction = 0;
-	}
-	
+	//create a robot (constructors)	
 	public Robot(String name, int x, int y, int speed,int direction) {
 		this.name = name;
-		this.position = new int[2][1];
-		this.position[0][0] = x;
-		this.position[1][0] = y;
+		this.posX = x;
+		this.posY = y;
 		this.speed = speed;
 		this.direction = direction;
 	}
 	
 	//getters
-	public String getName() {
-		return this.name;
+	public int getPosX() {
+		return this.posX;
 	}
 	
-	public int getPositionX() {
-		return this.position[0][0];
-	}
-	
-	public int getPositionY() {
-		return this.position[1][0];
-	}
-	
-	public int getSpeed() {
-		return this.speed;
+	public int getPosY() {
+		return this.posY;
 	}
 	
 	public int getDirection() {
 		return this.direction;
+	}
+	
+	public int getSpeed() {
+		return this.speed;
 	}
 	
 	//setters
@@ -53,9 +41,12 @@ public class Robot {
 		this.name = name;
 	}
 	
-	public void setPosition(int x, int y) {
-		this.position[0][0] = x;
-		this.position[1][0] = y;
+	public void setPosX(int x) {
+		this.posX = x;
+	}
+	
+	public void setPosY(int y) {
+		this.posY = y;
 	}
 	
 	public void setSpeed(int speed) {
@@ -67,41 +58,41 @@ public class Robot {
 	} 
 	
 	//methods
-	public void moveRobot(int speed) {
-		if (this.direction == 0 ) {  //north
-			this.position[1][0] = this.position[1][0] + speed;
+	public void moveRobot(int dist) {
+		if (this.direction == 1 ) {  //north
+			this.posY = this.posY + dist;
 		}
-		if (this.direction == 90 ) {  //east
-			this.position[0][0] = this.position[0][0] + speed;
+		if (this.direction == 2 ) {  //east
+			this.posX = this.posX + dist;
 		}
-		if (this.direction == 180 ) { //south
-			this.position[1][0] = this.position[1][0] - speed;
+		if (this.direction == 3 ) { //south
+			this.posY = this.posY - dist;
 		}
-		if (this.direction == 270 ) { //west
-			this.position[0][0] = this.position[1][0] - speed;
+		if (this.direction == 4 ) { //west
+			this.posX = this.posX - dist;
 		}
 	}
 	
 	public void rotateRobot(String direction) {
 		if (direction.equals("left")) {
-			if (this.direction == 0 ) {
-				this.direction = 270;
+			if (this.direction == 1 ) {
+				this.direction = 4;
 			}
 			else {
-				this.direction = this.direction - 90;
+				this.direction = this.direction - 1;
 			}
 		}
 		if (direction.equals("right")) {
-			if (this.direction == 270 ) {
-				this.direction = 0;
+			if (this.direction == 4 ) {
+				this.direction = 1;
 			}
 			else {
-				this.direction = this.direction + 90;
+				this.direction = this.direction + 1;
 			}
 		} 
 	}
 	
-	public double calcDistance (int x1, int y1, int x2, int y2) {
+	public double calcDistance(int x1, int y1, int x2, int y2) {
 		double x = Math.pow((x2-x1),2.0);
 		double y = Math.pow((y2-y1), 2.0);
 		return Math.sqrt(x+y);
@@ -109,26 +100,29 @@ public class Robot {
 	
 	//toString
 	public String toString() {
-		return "Name: " + name + "\nPosition: (" + position[0][0] + ", " + position[1][0] + ") \nSpeed: " + speed + "\nDirection: " + direction;
+		return "Name: " + name +
+				" Position: (" + posX + ", " + posY + ")" +
+				" Speed: " + speed +
+				" Direction: " + direction;
 	}
 
 	public static void main(String[] args) {
-		Robot robot1 = new Robot("Harold");
-		Robot robot2 = new Robot("Hilda", 10, 25, 20, 90);
+		Robot robot1 = new Robot("Harold", 22, 30, 10, 4);
+		Robot robot2 = new Robot("Hilda", 10, 25, 20, 3);
 		System.out.println(robot1);
 		System.out.println();
 		System.out.println(robot2);
-		double distance = robot1.calcDistance(robot1.getPositionX(), robot1.getPositionY(), robot2.getPositionX(), robot2.getPositionY());
+		double distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
 		System.out.println("\nDistance: " + distance + "\n");
 		robot1.rotateRobot("left");
 		robot1.moveRobot(10);
 		System.out.println(robot1);
-		distance = robot1.calcDistance(robot1.getPositionX(), robot1.getPositionY(), robot2.getPositionX(), robot2.getPositionY());
+		distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
 		System.out.println("\nDistance: " + distance + "\n");
 		robot1.rotateRobot("left");
 		robot1.moveRobot(50);
 		System.out.println(robot1);
-		distance = robot1.calcDistance(robot1.getPositionX(), robot1.getPositionY(), robot2.getPositionX(), robot2.getPositionY());
+		distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
 		System.out.println("\nDistance: " + distance + "\n");
 	
 	}
