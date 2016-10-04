@@ -87,15 +87,15 @@ public class Course {
 	}
 	
 	public static void main(String[] args) {
-		Student myTest = new Student("Sue", "Jones", 123);
-		Student myTest1 = new Student("Joe", "Smith", 111);
-		Student myTest2 = new Student("Betty", "Lou", 222);
-		Course math101 = new Course("Math 101",3,3);
-		math101.addStudent(myTest);
-		math101.addStudent(myTest1);
-		math101.addStudent(myTest);
-		math101.addStudent(myTest2);
-		System.out.println(math101.generateRoster());
+//		Student myTest = new Student("Sue", "Jones", 123);
+//		Student myTest1 = new Student("Joe", "Smith", 111);
+//		Student myTest2 = new Student("Betty", "Lou", 222);
+//		Course math101 = new Course("Math 101",3,2);
+//		math101.addStudent(myTest);
+//		math101.addStudent(myTest1);
+//		math101.addStudent(myTest);
+//		math101.addStudent(myTest2);
+//		System.out.println(math101.generateRoster());
 	}
 
 }

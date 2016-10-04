@@ -80,40 +80,15 @@ public class Student {
 	}
 
 	public double computeTuition() {
-		int credits = getCredits();
-		if (credits == 0 ) {
-			return 0;
-		} 
-		else if (credits > 0 && credits <= 15) {
-			return 20000.0;
+			int semesters = this.credits / 15;
+			int creditsLeft = this.credits % 15;
+			return semesters * 20000.0 + creditsLeft * 1333.33;
 		}
-		else if (credits > 15 && credits <= 30) {
-			return 40000.0;
-		}
-		else if (credits > 30 && credits <= 45) {
-			return 60000.0;
-		}
-		else if (credits > 45 && credits <= 60) {
-			return 80000.0;
-		}
-		else if (credits > 60 && credits <= 75) {
-			return 100000.0;
-		}
-		else if (credits > 75 && credits <= 90) {
-			return 120000.0;
-		}
-		else if (credits > 90 && credits <= 105) {
-			return 140000.0;
-		}
-		else {
-			return 160000.0;
-		}
-	}
-	
-	public Student createLegacy(Student s) {
-		Student newStudent = new Student(this.firstName + " " + this.lastName, s.firstName + " " + s.lastName, this.studentId + s.studentId);
-		newStudent.gpa = (this.gpa + s.gpa) / 2;
-		newStudent.credits = Math.max(this.credits, s.credits);
+			
+	public Student createLegacy(Student s1, Student s2) {
+		Student newStudent = new Student(s1.firstName + " " + s1.lastName, s2.firstName + " " + s2.lastName, s1.studentId + s2.studentId);
+		newStudent.gpa = (s1.gpa + s2.gpa) / 2;
+		newStudent.credits = Math.max(s1.credits, s2.credits);
 		return newStudent;
 	}
 	
