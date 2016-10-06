@@ -1,14 +1,12 @@
 
 public class Robot {
 	//fields
-	private String name;
+	protected String name;
 	//private int[][] position;
 	private int posX;
 	private int posY;
 	private int speed;
 	private int direction; //1=north; 2=east; 3=south; 4=east
-		
-	//behaviors
 	
 	//create a robot (constructors)	
 	public Robot(String name, int x, int y, int speed,int direction) {
@@ -57,7 +55,7 @@ public class Robot {
 		this.direction = direction;
 	} 
 	
-	//methods
+	//methods / behaviors
 	public void moveRobot(int dist) {
 		if (this.direction == 1 ) {  //north
 			this.posY = this.posY + dist;
@@ -124,7 +122,8 @@ public class Robot {
 		System.out.println(robot1);
 		distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
 		System.out.println("\nDistance: " + distance + "\n");
-	
+		AttackRobot ar1 = new AttackRobot("George", 10, 10, 5, 2, 20);
+		ar1.shootLaser();
 	}
 
 }
