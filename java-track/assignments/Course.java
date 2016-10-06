@@ -42,23 +42,22 @@ public class Course {
 	
 	//behaviors
 	public boolean addStudent(Student s) {
-		boolean isSuccess = false;
 		
 		if (this.getRemainingSeats() == 0) {
 			System.out.println("Sorry, " + s.getName() + ", this class is full.");
-			return isSuccess;
+			return false;
 		}
 		
 		for (int i = 0; i < students.size(); i++) {
 			if (students.get(i).getName().equals(s.getName())) {
 
 				System.out.println(s.getName() + " is already enrolled in the class.");
-				return isSuccess;
+				return false;
 	        }		
 	    }
 		students.add(s);
-		isSuccess = true;
-		return isSuccess;	
+
+		return true;	
 	}
 	
 	public String generateRoster() {
