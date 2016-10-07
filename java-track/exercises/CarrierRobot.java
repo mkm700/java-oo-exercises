@@ -5,7 +5,7 @@ public class CarrierRobot extends Robot {
 	
 	//constructor
 	public CarrierRobot(String name, int x, int y, 
-						int speed,int direction, int maxLoad) {
+						int speed, String direction, int maxLoad) {
 		super(name, x, y, speed, direction);
 		this.maxLoad = maxLoad;
 	}
@@ -24,7 +24,7 @@ public class CarrierRobot extends Robot {
 	}
 	
 	public static void main(String[] args) {
-		CarrierRobot cr1 = new CarrierRobot("Larry", 20, 0, 15, 1, 200);
+		CarrierRobot cr1 = new CarrierRobot("Larry", 20, 0, 15, "North", 200);
 		System.out.println(cr1);
 		System.out.println(cr1.name + ", can you carry 100lbs?");
 		System.out.println(cr1.verifyLoad(100));

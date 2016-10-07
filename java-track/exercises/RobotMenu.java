@@ -80,8 +80,8 @@ public class RobotMenu {
 		int y = s.nextInt();
 		System.out.println("Please enter a speed for your robot: ");
 		int speed = s.nextInt();
-		System.out.println("Please enter the orientation\n(1=north, 2=east, 3=south, 4=west): ");
-		int dir = s.nextInt();
+		System.out.println("Please enter the orientation\n(North, East, South, West): ");
+		String dir = s.nextLine();
 		
 		robots.add(new Robot(name, x, y, speed, dir));
 		System.out.println("Welcome to the world, " + name + "!");

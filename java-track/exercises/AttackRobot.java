@@ -5,7 +5,7 @@ public class AttackRobot extends Robot {
 
 	//constructor
 	public AttackRobot(String name, int x, int y, 
-						int speed,int direction, int maxLaserDist) {
+						int speed,String direction, int maxLaserDist) {
 		super(name, x, y, speed, direction);
 		this.maxLaserDist = maxLaserDist;
 	}
@@ -29,7 +29,7 @@ public class AttackRobot extends Robot {
 	}
 	
 	public static void main(String[] args) {
-		AttackRobot ar1 = new AttackRobot("George", 10, 10, 5, 2, 20);
+		AttackRobot ar1 = new AttackRobot("George", 10, 10, 5, "East", 20);
 		System.out.println(ar1);
 		ar1.shootLaser();
 		

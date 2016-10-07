@@ -6,10 +6,10 @@ public class Robot {
 	private int posX;
 	private int posY;
 	private int speed;
-	private int direction; //1=north; 2=east; 3=south; 4=east
+	private String direction;
 	
 	//create a robot (constructors)	
-	public Robot(String name, int x, int y, int speed,int direction) {
+	public Robot(String name, int x, int y, int speed,String direction) {
 		this.name = name;
 		this.posX = x;
 		this.posY = y;
@@ -18,6 +18,10 @@ public class Robot {
 	}
 	
 	//getters
+	public String getName() {
+		return this.name;
+	}
+	
 	public int getPosX() {
 		return this.posX;
 	}
@@ -26,7 +30,7 @@ public class Robot {
 		return this.posY;
 	}
 	
-	public int getDirection() {
+	public String getDirection() {
 		return this.direction;
 	}
 	
@@ -51,42 +55,50 @@ public class Robot {
 		this.speed = speed;
 	}
 	
-	public void setDirection(int direction) {
+	public void setDirection(String direction) {
 		this.direction = direction;
 	} 
 	
 	//methods / behaviors
 	public void moveRobot(int dist) {
-		if (this.direction == 1 ) {  //north
+		if (this.direction.equals("North") ) 
 			this.posY = this.posY + dist;
-		}
-		if (this.direction == 2 ) {  //east
+		
+		else if (this.direction.equals("East") )   
 			this.posX = this.posX + dist;
-		}
-		if (this.direction == 3 ) { //south
+		
+		else if (this.direction.equals("South") )  
 			this.posY = this.posY - dist;
-		}
-		if (this.direction == 4 ) { //west
+		
+		else   									
 			this.posX = this.posX - dist;
-		}
 	}
 	
 	public void rotateRobot(String direction) {
-		if (direction.equals("left")) {
-			if (this.direction == 1 ) {
-				this.direction = 4;
-			}
-			else {
-				this.direction = this.direction - 1;
-			}
+		if (direction.equals("Left")) {
+			if (this.direction.equals("North") ) 
+				this.direction = "West";
+			
+			else if (this.direction.equals("East") ) 
+				this.direction = "North";
+			
+			else if (this.direction.equals("South") ) 
+				this.direction = "East";
+			
+			else this.direction = "South";
+			
 		}
-		if (direction.equals("right")) {
-			if (this.direction == 4 ) {
-				this.direction = 1;
-			}
-			else {
-				this.direction = this.direction + 1;
-			}
+		if (direction.equals("Right")) {
+			if (this.direction.equals("North") ) 
+				this.direction = "East";
+			
+			else if (this.direction.equals("East") ) 
+				this.direction = "South";
+			
+			else if (this.direction.equals("South") ) 
+				this.direction = "West";
+			
+			else this.direction = "North";
 		} 
 	}
 	
@@ -98,15 +110,14 @@ public class Robot {
 	
 	//toString
 	public String toString() {
-		return "Name: " + name +
-				" Position: (" + posX + ", " + posY + ")" +
-				" Speed: " + speed +
-				" Direction: " + direction;
+		return name + ": Pos(" + posX + ", " + posY + ")" +
+				" Speed=" + speed +
+				" Direction=" + direction;
 	}
 
 	public static void main(String[] args) {
-		Robot robot1 = new Robot("Harold", 22, 30, 10, 4);
-		Robot robot2 = new Robot("Hilda", 10, 25, 20, 3);
+		Robot robot1 = new Robot("Harold", 22, 30, 10, "North");
+		Robot robot2 = new Robot("Hilda", 10, 25, 20, "West");
 		System.out.println(robot1);
 		System.out.println();
 		System.out.println(robot2);
@@ -122,7 +133,7 @@ public class Robot {
 		System.out.println(robot1);
 		distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
 		System.out.println("\nDistance: " + distance + "\n");
-		AttackRobot ar1 = new AttackRobot("George", 10, 10, 5, 2, 20);
+		AttackRobot ar1 = new AttackRobot("George", 10, 10, 5, "East", 20);
 		ar1.shootLaser();
 	}
 
