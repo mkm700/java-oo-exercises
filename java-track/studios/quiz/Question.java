@@ -27,10 +27,10 @@ public class Question {
 		return question + "\n" + answer;
 	}
 
-
 	public static void main(String[] args) {
-		Question q1 = new Question("my first question", "my first answer");
-		System.out.println(q1);
+		Question q = new Question("My awesome question", "My awesome answer");
+		System.out.println(q);
 	}
+
 
 }

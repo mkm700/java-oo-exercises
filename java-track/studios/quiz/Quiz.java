@@ -8,7 +8,7 @@ public class Quiz {
 	private ArrayList<Question> questions;
 	
 	//constructor
-	Quiz() {
+	public Quiz() {
 		questions = new ArrayList<Question>();
 	}
 	
@@ -37,11 +37,20 @@ public class Quiz {
 
 	public static void main(String[] args) {
 		//add new fillin question
-		questions.add(new Question("my sample question", "my sample answer"));
+		//myQuestions.add(new Question("my sample question", "my sample answer"));
 		
 		
 		//print all questions
-		printQuestions();
+		//printQuestions();
+//		String q1 = "This is my sample question";
+//		String a1 = "This is my sample answer";
+//		users.add(new User(uname, fname, lname, email, photoLink));
+//		myQuestions.add(new Question(q1,a1));
+//		System.out.println(q1);
+		
+		Question q = new Question("Another awesome question", "Another awesome answer");
+		questions.add(q);
+		System.out.println(q);
 		
 		
 		//create questions
