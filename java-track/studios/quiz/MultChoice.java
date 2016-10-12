@@ -1,26 +1,34 @@
 package quiz;
 
+import java.util.ArrayList;
+
 public class MultChoice extends Question{
-	String choiceA;
-	String choiceB;
-	String choiceC;
-	String choiceD;
-	
-	public MultChoice(String question, String answer, String choiceA, 
-			String choiceB, String choiceC, String choiceD ) {
-		super(question, answer);
-		this.choiceA = choiceA;
-		this.choiceB = choiceB;
-		this.choiceC = choiceC;
-		this.choiceD = choiceD;
+	//has-a
+	private ArrayList<String> choices;
+
+	//constructor
+	public MultChoice(String question) {
+		super(question);
+		choices = new ArrayList<String>();
 	}
 	
+	public void addChoice(String choice) {
+		choices.add(choice);
+	}
+
 	//Display choices
-	public void displayChoices() {
-		System.out.println("A. " + choiceA);
-		System.out.println("B. " + choiceB);
-		System.out.println("C. " + choiceC);
-		System.out.println("D. " + choiceD);
+	public void displayQuestion() {
+		
+		char[] abc = new char[] {'A','B','C','D','E','F'};
+		
+		super.displayQuestion();
+
+		for (int i=0; i<choices.size(); i++) {
+			char choiceLetter = abc[i];
+			System.out.println(choiceLetter + ". " + choices.get(i));
+		}
+
+
 	}
 	
 }

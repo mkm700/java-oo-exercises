@@ -2,35 +2,53 @@ package quiz;
 
 public class Question {
 	//has-a
-	//question
-	//answer
-	private String question;
-	private String answer;
+	private String qTitle;
+	private String qAnswer;
 	
 	//constructor
-	public Question(String question, String answer) {
-		this.question = question;
-		this.answer = answer;
+	public Question(String qTitle) {
+		this.qTitle = qTitle;
+		this.qAnswer = "";
+	}
+	
+	//get question title
+	public String getQTitle() {
+		return this.qTitle;
+	}
+	
+	//get question Answer
+	public String getQAnswer() {
+		return this.qAnswer;
+	}
+	
+	//set answer
+	public void setAnswer(String correctResponse) {
+		this.qAnswer = correctResponse;
 	}
 
-	//display the question
+	//compareAnswer
+	public boolean compareAnswer(String response) {
+		if (this.qAnswer.equalsIgnoreCase(response)) {
+			System.out.println("Correct!\n");
+			return true;
+		}
+		else {
+			System.out.println("No, the correct answer is " + this.qAnswer + "\n");
+			return false;
+		}
+
+	}
+	
+	//display question title
 	public void displayQuestion() {
-		System.out.println(question);
+		System.out.println(qTitle);
 	}
-	
-	//Check for correct answer
-	
-
 		
 	//toString
 	public String toString() {
-		return question + "\n" + answer;
+		return qTitle + "\n" + qAnswer;
 	}
 
 
-	public static void main(String[] args) {
-		Question q1 = new Question("my first question", "my first answer");
-		System.out.println(q1);
-	}
 
 }
