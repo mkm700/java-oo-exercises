@@ -19,6 +19,7 @@ public class Quiz {
 		totalCorrect = 0;
 	}
 	
+	//take the quiz
 	public void takeQuiz() {
 		for (Question q : questions) {
 			q.displayQuestion();
@@ -31,6 +32,7 @@ public class Quiz {
 		System.out.println("You got " + totalCorrect + " out of " + questions.size() + " questions correct!");
 	}
 	
+	//create the quiz questions
 	public void createQuestions() {
 		Question q1 = new Question("Who is the creator of Peanuts (first and last name?)");
 		q1.setAnswer("Charles Schulz");
@@ -75,38 +77,10 @@ public class Quiz {
 		questions.add(q7);
 	}
 	
-	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		Quiz quiz = new Quiz("Peanuts Trivia");
 		quiz.createQuestions();
 		quiz.takeQuiz();
-		
-		
-
-		
-		//get user input
-		//compare input to correct answer
-		//print message if answer is correct / incorrect
-		
-		
-		//create questions
-//		new MultChoice("What is Lucy's standard fee for psychiatric help?",
-//						"5 cents",
-//						"10 cents",
-//						"1 dollar",
-//						"5 cents",
-//						"Free");
-//		
-//		new MultChoice("What breed of dog is Snoopy?",
-//				"Beagle",
-//				"Beagle",
-//				"Collie",
-//				"Golden Retriever",
-//				"Corgi");
-//		
-//		new Question("What does Peppermint Patty call Charlie Brown?",
-//				"Chuck");
 
 	}
 	

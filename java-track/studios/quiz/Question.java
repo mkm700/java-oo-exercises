@@ -11,16 +11,6 @@ public class Question {
 		this.qAnswer = "";
 	}
 	
-	//get question title
-	public String getQTitle() {
-		return this.qTitle;
-	}
-	
-	//get question Answer
-	public String getQAnswer() {
-		return this.qAnswer;
-	}
-	
 	//set answer
 	public void setAnswer(String correctResponse) {
 		this.qAnswer = correctResponse;
@@ -36,7 +26,6 @@ public class Question {
 			System.out.println("No, the correct answer is " + this.qAnswer + "\n");
 			return false;
 		}
-
 	}
 	
 	//display question title
@@ -48,7 +37,5 @@ public class Question {
 	public String toString() {
 		return qTitle + "\n" + qAnswer;
 	}
-
-
 
 }
