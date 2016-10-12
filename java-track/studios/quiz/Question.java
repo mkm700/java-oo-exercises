@@ -36,13 +36,6 @@ public class Question {
 	//toString
 	public String toString() {
 		return qTitle + "\n" + qAnswer;
-		return question + "\n" + answer;
 	}
-
-	public static void main(String[] args) {
-		Question q = new Question("My awesome question", "My awesome answer");
-		System.out.println(q);
-	}
-
 
 }

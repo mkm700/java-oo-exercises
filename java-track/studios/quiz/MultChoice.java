@@ -27,8 +27,6 @@ public class MultChoice extends Question{
 			char choiceLetter = abc[i];
 			System.out.println(choiceLetter + ". " + choices.get(i));
 		}
-
-
 	}
 	
 }

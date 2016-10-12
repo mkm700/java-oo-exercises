@@ -14,7 +14,6 @@ public class Quiz {
 	//constructor
 	Quiz(String title) {
 		this.title = title;
-	public Quiz() {
 		questions = new ArrayList<Question>();
 		s = new Scanner(System.in);
 		totalCorrect = 0;
@@ -54,9 +53,6 @@ public class Quiz {
 		
 		Question q4 = new Question("What nickname does Peppermint Patty use for Charlie Brown?");
 		q4.setAnswer("Chuck");
-	public static void main(String[] args) {
-		//add new fillin question
-		//myQuestions.add(new Question("my sample question", "my sample answer"));
 		
 		Question q5 = new Question("Which character has the same name as a famous 60's event?");
 		q5.setAnswer("Woodstock");
@@ -68,17 +64,6 @@ public class Quiz {
 		q6.addChoice("All of the above");
 		q6.addChoice("None of the above");
 		q6.setAnswer("B");
-		//print all questions
-		//printQuestions();
-//		String q1 = "This is my sample question";
-//		String a1 = "This is my sample answer";
-//		users.add(new User(uname, fname, lname, email, photoLink));
-//		myQuestions.add(new Question(q1,a1));
-//		System.out.println(q1);
-		
-		Question q = new Question("Another awesome question", "Another awesome answer");
-		questions.add(q);
-		System.out.println(q);
 		
 		Question q7 = new Question("True or False: Linus and Lucy's last name is Van Pelt.");
 		q7.setAnswer("True");
