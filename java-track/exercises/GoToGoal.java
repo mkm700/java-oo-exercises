@@ -1,16 +1,15 @@
 
 public class GoToGoal implements RobotBehavior {
-	//move robot in increments of 1 until it reaches goal
-			//if r.pos > goal.pos -> r.pos - 1
-			//if r.pos < goal.pos -> r.pos + 1
-			//if r.pos == goal.pos -> stop
+	//move robot using specified increment until it reaches goal
 	
 	private int goalX;
 	private int goalY;
+	private int increment;
 	
-	public GoToGoal(int goalX, int goalY) {
+	public GoToGoal(int goalX, int goalY, int increment) {
 		this.goalX = goalX;
 		this.goalY = goalY;
+		this.increment = increment;
 	}
 	
 	@Override
@@ -18,42 +17,50 @@ public class GoToGoal implements RobotBehavior {
 		
 		int x = cr.getPosX();
 		int y = cr.getPosY();
-		boolean status = false;
-
-		if (x == goalX) { 			//goal x is met, check Y
-			
-			if (y == goalY) {
-				status = true;
-			}
-			
-			else if (y > goalY) {
-				cr.setPosY(y-1);
-				status = false;
-			}
-			
-			else if (y < goalY) {
-				cr.setPosY(y+1);
-				status = false;
-			}
+		
+		int incX = increment;
+		int incY = increment;
+		int remainX = Math.abs(x - goalX);
+		int remainY = Math.abs(y - goalY);
+		
+		if (remainX == 0 && remainY == 0) { 	//goal attained!
+			return true;
 		}
 		
-		else if (x > goalX) {
-			cr.setPosX(x-1);
-			status = false;
+		//evaluate X
+		if (remainX < incX) {				//if x distance left is smaller than increment, reduce it to remaining x
+			incX = remainX;
 		}
 		
-		else if (x < goalX) {
-			cr.setPosX(x+1);
-			status = false;
+		if (x > goalX) {
+			cr.setDirection("west");
+			cr.moveRobot(incX);
+		}
+		
+		if (x < goalX) {
+			cr.setDirection("east");
+			cr.moveRobot(incX);
+		}
+		
+		//evaluate Y
+		
+		if (remainY < incY) {				//if y distance left is smaller than increment, reduce it to remaining y
+			incY = remainY;
+		}
+			
+		if (y > goalY) {
+			cr.setDirection("south");
+			cr.moveRobot(incY);
+		}
+			
+		if (y < goalY) {
+			cr.setDirection("north");
+			cr.moveRobot(incY);
 		}
 		
 		System.out.println("CR position: (" + cr.getPosX() + "," + cr.getPosY() + ")");
-		return status;
+		return false;
 		
 	}
 	
-	
-
 }
-
-

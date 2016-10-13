@@ -59,5 +59,16 @@ public class RobotTest {
 		r.moveRobot(10);
 		assertTrue("Problem starting east",r.getPosX() == 10 && r.getPosY() == 0);	
 	}
+	
+	@Test
+	public void testInvalidSpeed() {
+		try {
+			Robot r = new Robot("Betty",10,12,-10,"north");
+			fail("Exception was not thrown for new robot");
+		}
+		catch (IllegalArgumentException e) {
+			assertTrue(true);
+		}
+	}
 
 }

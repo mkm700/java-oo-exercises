@@ -11,6 +11,10 @@ public class Robot {
 	
 	//create a robot (constructors)	
 	public Robot(String name, int x, int y, int speed, String direction) {
+		if (speed < 0) {
+			throw new IllegalArgumentException();
+		}
+		
 		this.name = name;
 		this.posX = x;
 		this.posY = y;
@@ -71,13 +75,13 @@ public class Robot {
 	
 	//methods / behaviors
 	public void moveRobot(int dist) {
-		if (this.direction.equals("North") ) 
+		if (this.direction.equalsIgnoreCase("North") ) 
 			this.posY = this.posY + dist;
 		
-		else if (this.direction.equals("East") )   
+		else if (this.direction.equalsIgnoreCase("East") )   
 			this.posX = this.posX + dist;
 		
-		else if (this.direction.equals("South") )  
+		else if (this.direction.equalsIgnoreCase("South") )  
 			this.posY = this.posY - dist;
 		
 		else   									
@@ -85,27 +89,27 @@ public class Robot {
 	}
 	
 	public void rotateRobot(String direction) {
-		if (direction.equals("Left")) {
-			if (this.direction.equals("North") ) 
+		if (direction.equalsIgnoreCase("Left")) {
+			if (this.direction.equalsIgnoreCase("North") ) 
 				this.direction = "West";
 			
-			else if (this.direction.equals("East") ) 
+			else if (this.direction.equalsIgnoreCase("East") ) 
 				this.direction = "North";
 			
-			else if (this.direction.equals("South") ) 
+			else if (this.direction.equalsIgnoreCase("South") ) 
 				this.direction = "East";
 			
 			else this.direction = "South";
 			
 		}
-		if (direction.equals("Right")) {
-			if (this.direction.equals("North") ) 
+		if (direction.equalsIgnoreCase("Right")) {
+			if (this.direction.equalsIgnoreCase("North") ) 
 				this.direction = "East";
 			
-			else if (this.direction.equals("East") ) 
+			else if (this.direction.equalsIgnoreCase("East") ) 
 				this.direction = "South";
 			
-			else if (this.direction.equals("South") ) 
+			else if (this.direction.equalsIgnoreCase("South") ) 
 				this.direction = "West";
 			
 			else this.direction = "North";
@@ -130,26 +134,34 @@ public class Robot {
 	}
 
 	public static void main(String[] args) {		
-		CarrierRobot cr1 = new CarrierRobot("Betty",50,-12,0,"north",0);
-		AttackRobot ar1 = new AttackRobot("Barbara",10,5,0,"north",10);
-		cr1.setBehavior(new GoToGoal(2,-5));
-		ar1.setBehavior(new DistanceAttack(ar1,20.0));
-		boolean keepGoing = true;
-		boolean crGoal = false;
-		boolean arGoal = false;
-		while (keepGoing) {
-			crGoal = cr1.getBehavior().doNextMove(cr1);
-			arGoal = ar1.getBehavior().doNextMove(cr1);
-			if (crGoal) {
-				keepGoing = false;
-				System.out.print("Carrier Robot ");
+//		try {
+			CarrierRobot cr1 = new CarrierRobot("Betty",10,12,-10,"north",0);
+			AttackRobot ar1 = new AttackRobot("Barbara",20,-5,0,"north",10);
+			cr1.setBehavior(new GoToGoal(22,-5,10));
+			ar1.setBehavior(new DistanceAttack(ar1,-5.0));
+
+			boolean keepGoing = true;
+			boolean crGoal = false;
+			boolean arGoal = false;
+			while (keepGoing) {
+				crGoal = cr1.getBehavior().doNextMove(cr1);
+				arGoal = ar1.getBehavior().doNextMove(cr1);
+				if (crGoal) {
+					keepGoing = false;
+					System.out.print("Carrier Robot ");
+				}
+				else if (arGoal) {
+					keepGoing = false;
+					System.out.print("Attack Robot ");
+				}
 			}
-			else if (arGoal) {
-				keepGoing = false;
-				System.out.print("Attack Robot ");
-			}
-		}
-		System.out.println("reached the goal!!");
+			System.out.println("achived the goal first!!");
+			
+//		}
+//		catch (IllegalArgumentException e) {
+//			System.out.println("Cannot create Robot");
+//			e.printStackTrace();
+//		}	
 		
 	}
 
