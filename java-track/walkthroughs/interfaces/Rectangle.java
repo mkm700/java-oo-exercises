@@ -35,7 +35,8 @@ public class Rectangle implements Measurable {
 		
 		for (int i = 0; i<shapes.size(); i++) {
 			Measurable shape = shapes.get(i);
-			System.out.println(shape.getArea());
+			System.out.println("Area: " + shape.getArea());
+			System.out.println("Perimeter: " + shape.getPerimeter());
 		}
 	}
 	

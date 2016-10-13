@@ -7,9 +7,10 @@ public class Robot {
 	private int posY;
 	private int speed;
 	private String direction;
+	private RobotBehavior behavior;
 	
 	//create a robot (constructors)	
-	public Robot(String name, int x, int y, int speed,String direction) {
+	public Robot(String name, int x, int y, int speed, String direction) {
 		this.name = name;
 		this.posX = x;
 		this.posY = y;
@@ -38,6 +39,11 @@ public class Robot {
 		return this.speed;
 	}
 	
+	public RobotBehavior getBehavior() {
+		return this.behavior;
+	} 
+	
+	
 	//setters
 	public void setName(String name) {
 		this.name = name;
@@ -57,6 +63,10 @@ public class Robot {
 	
 	public void setDirection(String direction) {
 		this.direction = direction;
+	} 
+	
+	public void setBehavior(RobotBehavior behavior) {
+		this.behavior = behavior;
 	} 
 	
 	//methods / behaviors
@@ -107,34 +117,40 @@ public class Robot {
 		double y = Math.pow((y2-y1), 2.0);
 		return Math.sqrt(x+y);
 	}
+
+//	//doNextMove
+//	public boolean doNextMove(CarrierRobot cr) {
+//		this.behavior.doNextMove(cr);
+//	}
 	
 	//toString
 	public String toString() {
 		return name + ": Pos(" + posX + ", " + posY + ")" +
-				" Speed=" + speed +
-				" Direction=" + direction;
+				" Speed=" + speed + " Direction=" + direction + " Behavior: " + behavior;
 	}
 
-	public static void main(String[] args) {
-		Robot robot1 = new Robot("Harold", 22, 30, 10, "North");
-		Robot robot2 = new Robot("Hilda", 10, 25, 20, "West");
-		System.out.println(robot1);
-		System.out.println();
-		System.out.println(robot2);
-		double distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
-		System.out.println("\nDistance: " + distance + "\n");
-		robot1.rotateRobot("left");
-		robot1.moveRobot(10);
-		System.out.println(robot1);
-		distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
-		System.out.println("\nDistance: " + distance + "\n");
-		robot1.rotateRobot("left");
-		robot1.moveRobot(50);
-		System.out.println(robot1);
-		distance = robot1.calcDistance(robot1.posX, robot1.posY, robot2.posX, robot2.posY);
-		System.out.println("\nDistance: " + distance + "\n");
-		AttackRobot ar1 = new AttackRobot("George", 10, 10, 5, "East", 20);
-		ar1.shootLaser();
+	public static void main(String[] args) {		
+		CarrierRobot cr1 = new CarrierRobot("Betty",50,-12,0,"north",0);
+		AttackRobot ar1 = new AttackRobot("Barbara",10,5,0,"north",10);
+		cr1.setBehavior(new GoToGoal(2,-5));
+		ar1.setBehavior(new DistanceAttack(ar1,20.0));
+		boolean keepGoing = true;
+		boolean crGoal = false;
+		boolean arGoal = false;
+		while (keepGoing) {
+			crGoal = cr1.getBehavior().doNextMove(cr1);
+			arGoal = ar1.getBehavior().doNextMove(cr1);
+			if (crGoal) {
+				keepGoing = false;
+				System.out.print("Carrier Robot ");
+			}
+			else if (arGoal) {
+				keepGoing = false;
+				System.out.print("Attack Robot ");
+			}
+		}
+		System.out.println("reached the goal!!");
+		
 	}
 
 }

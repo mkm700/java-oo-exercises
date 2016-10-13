@@ -29,9 +29,8 @@ public class AttackRobot extends Robot {
 	}
 	
 	public static void main(String[] args) {
-		AttackRobot ar1 = new AttackRobot("George", 10, 10, 5, "East", 20);
-		System.out.println(ar1);
-		ar1.shootLaser();
+
+
 		
 
 	}

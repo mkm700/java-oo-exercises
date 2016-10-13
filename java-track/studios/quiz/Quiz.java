@@ -24,6 +24,10 @@ public class Quiz {
 		for (Question q : questions) {
 			q.displayQuestion();
 			String r = s.nextLine();
+			while (r.isEmpty()) {
+				System.out.println("Please provide an answer: ");
+				r=s.nextLine();
+			}
 			if(q.compareAnswer(r)) {
 				totalCorrect++;
 			}
@@ -78,7 +82,8 @@ public class Quiz {
 	}
 	
 	public static void main(String[] args) {		
-		Quiz quiz = new Quiz("Peanuts Trivia");
+		Quiz quiz = new Quiz("Peanuts Trivia Quiz");
+		System.out.println(quiz.title + "\n" + "--------------------");
 		quiz.createQuestions();
 		quiz.takeQuiz();
 

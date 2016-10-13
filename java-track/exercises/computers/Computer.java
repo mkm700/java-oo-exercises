@@ -55,7 +55,7 @@ public class Computer {
 	}
 	
 	public static void main(String[] args) {
-		Computer c = new Computer(4, 22.0, 100.5, "Unknown");
+		Computer c = new Computer(-4, 22.0, 100.5, "Unknown");
 		System.out.println(c);
 		c.addMemory(2);
 		System.out.println(c);
