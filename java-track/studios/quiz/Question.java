@@ -1,7 +1,7 @@
 package quiz;
 
 public class Question {
-	//has-a
+	//has-a: question title, answer
 	private String qTitle;
 	private String qAnswer;
 	

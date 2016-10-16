@@ -64,7 +64,7 @@ public class Quiz {
 		MultChoice q6 = new MultChoice("Which character lives in the desert near Needles, CA?");
 		q6.addChoice("Jorge");
 		q6.addChoice("Spike");
-		q6.addChoice("The little girl with red hair");
+		q6.addChoice("The little red-haired girl");
 		q6.addChoice("All of the above");
 		q6.addChoice("None of the above");
 		q6.setAnswer("B");
