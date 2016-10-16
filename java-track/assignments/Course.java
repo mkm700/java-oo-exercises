@@ -5,6 +5,7 @@ public class Course {
 	private int courseCredits;
 	private int numSeats;
 	private ArrayList<Student> students;
+	static ArrayList<Course> courseList = new ArrayList<Course>();
 	
 	//constructor 
 	public Course(String name, int courseCredits, int numSeats) {
@@ -12,6 +13,7 @@ public class Course {
 		this.courseCredits = courseCredits;
 		this.numSeats = numSeats;
 		students = new ArrayList<Student>();
+		courseList.add(this);
 	}
 	
 	//getters
@@ -80,21 +82,35 @@ public class Course {
 		return gpaSum / students.size();
 	}
 	
+	//add a static method getAllCourses that returns an ArrayList of all courses. 
+	public static ArrayList<Course> getAllCourses() {
+		return courseList;
+	}
+	
 	//toString
 	public String toString() {
-		return name + " " + courseCredits; 
+		return name + " " + " Credits: " + courseCredits + " Total Seats : " + numSeats; 
 	}
 	
 	public static void main(String[] args) {
-//		Student myTest = new Student("Sue", "Jones", 123);
-//		Student myTest1 = new Student("Joe", "Smith", 111);
-//		Student myTest2 = new Student("Betty", "Lou", 222);
-//		Course math101 = new Course("Math 101",3,2);
-//		math101.addStudent(myTest);
-//		math101.addStudent(myTest1);
-//		math101.addStudent(myTest);
-//		math101.addStudent(myTest2);
-//		System.out.println(math101.generateRoster());
+		new Course("Java 101", 3, 25);
+		new Course("SQL 101", 3, 25);
+		new Course("Python 101", 3, 25);
+
+//		Student s1 = new Student("Mary", "Jones", 123);
+//		Student s2 = new Student("Tim", "Pip", 456);
+		
+//		c1.addStudent(s1);
+//		c1.addStudent(s2);
+//		c3.addStudent(s1);
+		
+		//print roster
+//		System.out.println("Course: " + c1.getName() + "\n" + c1.generateRoster());
+//		System.out.println("Course: " + c2.getName() + "\n" + c2.generateRoster());
+//		System.out.println("Course: " + c1.getName() + "\n" + c3.generateRoster());
+		
+		System.out.println(Course.getAllCourses());
+
 	}
 
 }

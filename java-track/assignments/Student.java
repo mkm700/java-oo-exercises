@@ -85,11 +85,19 @@ public class Student {
 			return semesters * TUITION + creditsLeft * 1333.33;   //use constant for both
 		}
 			
-	public Student createLegacy(Student s1, Student s2) {
+//	public Student createLegacy(Student s1, Student s2) {
+//		Student newStudent = new Student(s1.firstName + " " + s1.lastName, s2.firstName + " " + s2.lastName, s1.studentId + s2.studentId);
+//		newStudent.setGPA( (s1.gpa + s2.gpa) / 2 );					
+//		newStudent.setCredits( Math.max(s1.credits, s2.credits) );	
+//		return newStudent;
+//	}
+	
+	//Refactor createLegacy so that createLegacy is a static method.
+	public static Student createLegacy(Student s1, Student s2) {
 		Student newStudent = new Student(s1.firstName + " " + s1.lastName, s2.firstName + " " + s2.lastName, s1.studentId + s2.studentId);
 		newStudent.setGPA( (s1.gpa + s2.gpa) / 2 );					
 		newStudent.setCredits( Math.max(s1.credits, s2.credits) );	
-		return newStudent;
+		return newStudent;		
 	}
 	
 	//toString

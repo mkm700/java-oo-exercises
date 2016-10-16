@@ -1,6 +1,8 @@
 //package pset9;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -112,7 +114,8 @@ public class StudentAndCourseTest extends TestCase {
 			int c2 = (int)(Math.random() * 120 + 1);
 			double g2 = Math.round(Math.random() * 4000) / 1000.0;
 			ss.submitGrade(g2, c2);
-			Student bb = s.createLegacy(s, ss);
+			//Student bb = s.createLegacy(s, ss);
+			Student bb = Student.createLegacy(s, ss);
 			assertTrue("create baby not setting name properly", bb.getName().contains(s.getName()) && bb.getName().contains(ss.getName()));
 			assertEquals("create baby not setting gpa properly", (g + g2) / 2, bb.getGPA(), 0.01);
 			assertEquals("create baby not setting credits properly", bb.getCredits(), Math.max(c, c2));
@@ -228,6 +231,19 @@ public class StudentAndCourseTest extends TestCase {
 		}
 	}
 
-
+	@Test
+	public void testGetAllCourses() {
+		Course.courseList.clear();
+		ArrayList<Course> clTest = new ArrayList<Course>();
+		
+		for (int i = 0; i < 100; i++) {
+			Course cc = new Course("Test Course " + i, 3, 123);
+			clTest.add(cc);
+		}	
+			
+		System.out.println(clTest);
+		System.out.println(Course.getAllCourses());
+		assertTrue("course lists do not match", Course.getAllCourses().equals(clTest));
+	}
 
 }
