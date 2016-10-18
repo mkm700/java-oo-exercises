@@ -13,6 +13,7 @@ public class User {
 	private String password;
 	private static List<User> userList = new ArrayList<User>();
 	private static final String PATTERN = "[a-zA-Z][a-zA-Z0-9_-]{4,11}";
+
 	
 	//1. The constructor should take in a password in plain text and call a 
 	//private static method hashPassword to generate the hashed password before setting 
@@ -38,41 +39,43 @@ public class User {
 	}
 	
 	//methods
-	private static String hashPassword(String pw) {
+	public static String hashPassword(String pw) {
 		return pw;
 	}
 	
 	//2. Write a method to verify a password against its hash
-	private static boolean isValidPassword(String pw) {		
+	public boolean isValidPassword(String pw) {		
 		return true;
 	}
 	
 	//3. write a static method isValidUsername that returns a 
 	//boolean signifying whether or not the given string is valid.
 	//An appropriate exception should be thrown if the username is not valid. 
-	private static boolean isValidUserName(String un, String regex) {		
+	public static boolean isValidUserName(String un, String pattern) {		
+	
+		boolean b = un.matches(pattern);
 		
-		boolean b = Pattern.matches(un, regex);
+		if (!b) {
+			throw new PatternSyntaxException("Invalid username", PATTERN, -1);
+		}
 		
-//		 Pattern p = Pattern.compile("a*b");
-//		 Matcher m = p.matcher("aaaaab");
-//		 boolean b = m.matches();
-
-		System.out.println(b);
-//		if (!b) {
-//			throw new PatternSyntaxException("Invalid username", PATTERN, -1);
-//		}
 		return b;
 	}
+	
 
 	//4. along with a method to return this list.
-	private List<User> getUserList() {
+	public static List<User> getUserList() {
 		return userList;
+	}
+	
+	public String toString() {
+		return this.username + ", " + this.password;
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		//User.isValidUserName("abc1de",PATTERN);
+		
 	}
 
 }
