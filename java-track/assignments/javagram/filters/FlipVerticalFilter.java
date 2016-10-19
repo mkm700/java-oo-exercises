@@ -1,9 +1,10 @@
 package javagram.filters;
 
-import javagram.Picture;
 import java.awt.Color;
 
-public class BlueFilter implements Filter {
+import javagram.Picture;
+
+public class FlipVerticalFilter implements Filter {
 
 	public Picture process(Picture original) {
 		
@@ -11,23 +12,23 @@ public class BlueFilter implements Filter {
         
 	    //get each pixel one by one
 	    for (int i = 0; i < original.width(); i++) {
-	      for (int j = 0; j < original.height(); j++) {
-	    	  
-	    	  Color c = original.get(i, j);
-	          
+	    	for (int j = 0; j < original.height(); j++) {
+	
+	    	  //get color from opposite side
+	    	  Color c = original.get(i, original.height()-j-1);
+	
 	          //get color components from each pixel
 	          int r = c.getRed();
 	          int g = c.getGreen();
 	          int b = c.getBlue();
 	          
-	          int newBlue = (r + g + b) / 3;
 	          
-	          processed.set(i, j, new Color(0, 0, newBlue));
+	          processed.set(i, j, new Color(r, g, b));
 	    	  
-	      }
+	    	}
 	    }
-		
+			
 		return processed;
-	}
-
+			
+		}
 }
