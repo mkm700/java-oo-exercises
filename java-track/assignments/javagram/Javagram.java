@@ -3,6 +3,7 @@ package javagram;
 import javagram.filters.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -40,24 +41,40 @@ public class Javagram {
 		} while(picture == null);
 		
 		// TODO - prompt user for filter and validate input
-		int choice = displayFilterMenu(in);
+		ArrayList<Filter> filterList = new ArrayList<Filter>();
+		Picture processed = picture;
+		int choice = 0;
+		int i = 0;
 		
-		// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
-		//Filter filter = getFilter(choice);			
-		Filter filter = null;
 		do {
-			try {
-				filter = getFilter(choice);
+			choice = displayFilterMenu(in);
+			
+			// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
+				
+			//Filter filter = null;
+			filterList.add(i, null);
+			do {
+				try {
+					filterList.set(i, getFilter(choice));
+				}
+				catch (RuntimeException e) {
+					System.out.println("Menu number is not valid. Please try again:");
+					choice = in.nextInt();
+				}
+			} while (filterList.get(i) == null);
+			
+			// filter and display image
+			processed = filterList.get(i).process(processed);
+			
+			System.out.println("Do you want to apply any more filters (y or n?)");
+			String keepGoing = in.next();
+			if (keepGoing.equalsIgnoreCase("n") || keepGoing.equalsIgnoreCase("no")) {
+				choice = 99;
+				i++;
 			}
-			catch (RuntimeException e) {
-				System.out.println("Menu number is not valid. Please try again:");
-				choice = in.nextInt();
-			}
-		} while (filter == null);
 		
+		} while (choice != 99);
 		
-		// filter and display image
-		Picture processed = filter.process(picture);
 		processed.show();
 		
 		System.out.println("Image successfully filtered");
@@ -79,7 +96,7 @@ public class Javagram {
 				String absFileName = dir + File.separator + fileName;
 				File f = new File(absFileName);
 				if(f.exists()) { 
-					System.out.println("File already exists. Are you sure you want to overwrite it?");
+					System.out.println("File already exists. Are you sure you want to overwrite it (y or n)?");
 					String response = in.next();
 					if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
 						processed.save(absFileName);
