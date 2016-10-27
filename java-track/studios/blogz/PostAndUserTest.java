@@ -27,7 +27,7 @@ public class PostAndUserTest {
 		User u = new User("Joe123","myPW123");
 		assertEquals("Joe123", u.getUserName());
 		assertEquals("myPW123", u.getPassword());
-		
+		System.out.println(u);
 	}
 	
 	//Username exception test
@@ -35,7 +35,7 @@ public class PostAndUserTest {
 	public void testInvalidUsername() {
 		//too short
 		try {
-			new User("abc","111999");
+			User u1 = new User("abc","111999");
 			fail("Exception was not thrown for invalid username");
 		}
 		//catch (IllegalArgumentException e) {

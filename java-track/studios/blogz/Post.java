@@ -3,7 +3,7 @@ package blogz;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Post {
+public class Post extends Entity {
 	private String title;
 	private String body;
 	private String author;
@@ -11,6 +11,7 @@ public class Post {
 	private Date updated;
 	
 	public Post(String title, String body, String author) {
+		super();
 		this.title = title;
 		this.body = body;
 		this.author = author;
@@ -60,6 +61,6 @@ public class Post {
 	
 	//toString
 	public String toString() {
-		return title + "\n" + body + "\nBy: " + author + " on " + created + "\nLast updated on: " + updated;
+		return title + "\n" + body + "\nBy: " + author + " on " + created + "\nLast updated on: " + updated + " ID:" + this.getUid();
 	}
 }
