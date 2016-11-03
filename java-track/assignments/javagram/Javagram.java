@@ -45,6 +45,7 @@ public class Javagram {
 		Picture processed = picture;
 		int choice = 0;
 		int i = 0;
+		boolean noMoreFilters = false;
 		
 		do {
 			choice = displayFilterMenu(in);
@@ -69,12 +70,12 @@ public class Javagram {
 			System.out.println("Do you want to apply any more filters (y or n?)");
 			String keepGoing = in.next();
 			if (keepGoing.equalsIgnoreCase("n") || keepGoing.equalsIgnoreCase("no")) {
-				choice = 99;
+				noMoreFilters = true;
 				i++;
 			}
 		
-		} while (choice != 99);
-		
+		} while (!noMoreFilters);
+			
 		processed.show();
 		
 		System.out.println("Image successfully filtered");
